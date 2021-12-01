@@ -1,14 +1,47 @@
-# Project
+# COCO-LM
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repository contains the scripts for fine-tuning COCO-LM pretrained models on GLUE and SQuAD 2.0 benchmarks.
 
-As the maintainer of this project, please make a few updates:
+Paper: [COCO-LM: Correcting and Contrasting Text Sequences for Language Model Pretraining](https://arxiv.org/abs/2102.08473)
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Overview
+
+We provide the scripts in two versions, based on two widely-used open-source codebases, the [Fairseq Library](https://github.com/pytorch/fairseq) and the [Huggingface Transformers Library](https://github.com/huggingface/transformers). The two code versions are mostly equivalent in functionality, and you are free to use either of them. However, we note that the [fairseq](fairseq) version is what we used in our experiments, and it will best reproduce the results in the paper; the [huggingface](huggingface) version is implemented later to provide compatibility with the Huggingface Transformers Library, and may yield slightly different results.
+
+Please follow the README files under the two directories for running the code.
+
+## GLUE Fine-Tuning Results
+
+The [General Language Understanding Evaluation (GLUE)](https://gluebenchmark.com/) benchmark is a collection of sentence- or sentence-pair language understanding tasks for evaluating and analyzing natural language understanding systems. 
+
+GLUE dev set results of COCO-LM base++ and large++ models are as follows (median of 5 different random seeds):
+
+| Model | MNLI-m/mm | QQP | QNLI | SST-2 | CoLA | RTE | MRPC | STS-B | AVG |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| COCO-LM base++ | 90.2/90.0 | 92.2 | 94.2 | 94.6 | 67.3 | 87.4 | 91.2 | 91.8 | 88.6 |
+| COCO-LM large++ | 91.4/91.6 | 92.8 | 95.7 | 96.9 | 73.9 | 91.0 | 92.2 | 92.7 | 90.8 |
+
+## SQuAD 2.0 Fine-Tuning Results
+
+[Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable. 
+
+SQuAD 2.0 dev set results of COCO-LM base++ and large++ models are as follows (median of 5 different random seeds):
+
+| Model | EM | F1 |
+| ------ | ------ | ------ |
+| COCO-LM base++ | 85.4 | 88.1 |
+| COCO-LM large++ | 88.2 | 91.0 |
+
+## Citation
+If you find the code and models useful for your research, please cite the following paper:
+```
+@inproceedings{meng2021cocolm,
+  title={{COCO-LM}: Correcting and contrasting text sequences for language model pretraining},
+  author={Meng, Yu and Xiong, Chenyan and Bajaj, Payal and Tiwary, Saurabh and Bennett, Paul and Han, Jiawei and Song, Xia},
+  booktitle={NeurIPS},
+  year={2021}
+}
+```
 
 ## Contributing
 
@@ -23,11 +56,3 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
-## Trademarks
-
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
