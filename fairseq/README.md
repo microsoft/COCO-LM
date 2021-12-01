@@ -13,7 +13,7 @@ bash install.sh
 
 ## Pretrained Models
 
-We release two COCO-LM pretrained models, [`cocolm-base`]() and [`cocolm-large`]() (**Note: Please follow the links here to download them; do not use the huggingface version of pretrained models as they are not compatible with Fairseq**), which correspond to the `base++` and `large++` models mentioned in the paper, respectively. 
+We release two COCO-LM pretrained models, [`cocolm-base`](https://github.com/microsoft/COCO-LM/releases/download/v0.1.0/cocolm-base.tar.gz) and [`cocolm-large`](https://github.com/microsoft/COCO-LM/releases/download/v0.1.0/cocolm-large.tar.gz) (**Note: Please follow the links here to download them; do not use the huggingface version of pretrained models as they are not compatible with Fairseq**), which correspond to the `base++` and `large++` models mentioned in the paper, respectively. You need to extract the models from the archives.
 
 ## GLUE Fine-tuning
 
