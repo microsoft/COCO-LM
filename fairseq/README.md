@@ -13,7 +13,7 @@ bash install.sh
 
 ## Pretrained Models
 
-We release two COCO-LM pretrained models, [`cocolm-base`](https://huggingface.co/microsoft/cocolm-base) and [`cocolm-large`](https://huggingface.co/microsoft/cocolm-large) (**Note: Please follow the links here to download them; do not use the huggingface version of pretrained models as they are not compatible with Fairseq**), which correspond to the `base++` and `large++` models mentioned in the paper, respectively. 
+We release two COCO-LM pretrained models, [`cocolm-base`]() and [`cocolm-large`]() (**Note: Please follow the links here to download them; do not use the huggingface version of pretrained models as they are not compatible with Fairseq**), which correspond to the `base++` and `large++` models mentioned in the paper, respectively. 
 
 ## GLUE Fine-tuning
 
@@ -44,12 +44,29 @@ SEED=1
 export CUDA_VISIBLE_DEVICES=0
 bash run_glue.sh $TASK $PRETRAINED_MODEL_PATH $GLUE_DATA_DIR $OUT_PATH $ARCH $EPOCH $WARMUP $BSZ $LR $SEED
 ```
+**Note: The `WARMUP` argument is the reciprocal of the warmup ratio (e.g., `WARMUP=16` means that we are using a 6.25% warmup ratio)**
 
-The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below:
+The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
 
 * COCO-LM base++
 
+|  | MNLI-m/mm | QQP | QNLI | SST-2 | CoLA | RTE | MRPC | STS-B |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| BSZ | 32/32 | 32 | 32 | 32 | 16 | 16 | 16 | 16 |
+| LR | 2e-5/1e-5 | 3e-5 | 1e-5 | 2e-5 | 2e-5 | 2e-5 | 4e-5 | 4e-5 |
+| EPOCH | 2/2 | 5 | 5 | 5 | 10 | 10 | 10 | 10 |
+| WARMUP | 16/16 | 16 | 16 | 16 | 16 | 10 | 16 | 16 |
+| Result | 90.2/90.0 | 92.2 | 94.2 | 94.6 | 67.3 | 87.4 | 91.2 | 91.8 |
+
 * COCO-LM large++
+
+|  | MNLI-m/mm | QQP | QNLI | SST-2 | CoLA | RTE | MRPC | STS-B |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| BSZ | 32/32 | 32 | 32 | 32 | 16 | 32 | 16 | 16 |
+| LR | 5e-6/5e-6 | 1e-5 | 7e-6 | 5e-6 | 1e-5 | 2e-5 | 2e-5 | 2e-5 |
+| EPOCH | 3/2 | 5 | 2 | 2 | 10 | 5 | 5 | 10 |
+| WARMUP | 16/16 | 16 | 16 | 16 | 10 | 16 | 16 | 16 |
+| Result | 91.4/91.6 | 92.8 | 95.7 | 96.9 | 73.9 | 91.0 | 92.2 | 92.7 |
 
 ## SQuAD 2.0 Fine-tuning 
 [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable. 
@@ -76,9 +93,26 @@ SEED=1
 export CUDA_VISIBLE_DEVICES=0
 bash run_squad.sh $PRETRAINED_MODEL_PATH $DATA_DIR $OUT_PATH $ARCH $EPOCH $WARMUP $BSZ $LR $SEED
 ```
+**Note: The `WARMUP` argument is the reciprocal of the warmup ratio (e.g., `WARMUP=16` means that we are using a 6.25% warmup ratio)**
 
-The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below:
+The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
 
 * COCO-LM base++
 
+|  | EM | F1 |
+| ------ | ------ | ------ |
+| BSZ | 32 | 32 |
+| LR | 2e-5 | 2e-5 |
+| EPOCH | 3 | 3 |
+| WARMUP | 10 | 10 |
+| Result | 85.4 | 88.1 |
+
 * COCO-LM large++
+
+|  | EM | F1 |
+| ------ | ------ | ------ |
+| BSZ | 32 | 32 |
+| LR | 2e-5 | 2e-5 |
+| EPOCH | 2 | 3 |
+| WARMUP | 16 | 10 |
+| Result | 88.3 | 91.0 |
