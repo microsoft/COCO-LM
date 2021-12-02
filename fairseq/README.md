@@ -76,7 +76,7 @@ Since Fairseq training takes binary input files, you need to first preprocess th
 cd preprocess/squad
 bash process.sh <squad_data_folder> <dict_dir>
 ```
-where `<squad_data_folder>` is the path where raw and processed SQuAD data will be stored to; `<dict_dir>` is the directory containing two dictionary files `sp.model` and `dict.txt` which can be downloaded [here]().
+where `<squad_data_folder>` is the path where raw and processed SQuAD data will be stored to; `<dict_dir>` is the directory containing two dictionary files `sp.model` and `dict.txt` which can be downloaded [here](https://github.com/microsoft/COCO-LM/releases/download/v0.1.0/dict.tar.gz).
 
 After preprocessing the SQuAD data, you can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2.0. An example for using the script is shown below:
 ```
