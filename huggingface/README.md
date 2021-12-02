@@ -10,6 +10,7 @@ The scripts require Python 3.6+ and the required Python packages can be installe
 ```
 pip3 install -r requirements.txt
 ```
+In addition, if you would like to utilize `fp16` training, you need to install [apex](https://github.com/NVIDIA/apex).
 
 ## Pretrained Models
 
