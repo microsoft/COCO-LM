@@ -19,16 +19,16 @@ We release two COCO-LM pretrained models, [`cocolm-base`](https://github.com/mic
 
 The [General Language Understanding Evaluation (GLUE)](https://gluebenchmark.com/) benchmark is a collection of sentence- or sentence-pair language understanding tasks for evaluating and analyzing natural language understanding systems. 
 
-You can download the [GLUE data](https://gluebenchmark.com/tasks) by running [this script](https://gist.github.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e) and unpack it to some directory.
+**Download GLUE Data**: You can download the [GLUE data](https://gluebenchmark.com/tasks) by running [this script](https://gist.github.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e) and unpack it to some directory.
 
-Since Fairseq training takes binary input files, you need to first preprocess the GLUE data to generate binary files by running the following:
+**Process GLUE Data**: Since Fairseq training takes binary input files, you need to first preprocess the GLUE data to generate binary files by running the following:
 ```
 cd preprocess/glue
 bash process.sh <glue_data_folder> <task_name> <dict_dir> <output>
 ```
 where `<glue_data_folder>` is the path of the raw GLUE data; `<task_name>` is one of the following: `{ALL, QQP, MNLI, QNLI, MRPC, RTE, STS-B, SST-2, CoLA}`; use `ALL` for preprocessing all the GLUE tasks; `<dict_dir>` is the directory containing two dictionary files `sp.model` and `dict.txt` which can be downloaded [here](https://github.com/microsoft/COCO-LM/releases/download/v0.1.0/dict.tar.gz); `<task_name>` is the output directory for processed GLUE data.
 
-After preprocessing the GLUE data, you can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE task. An example for using the script for fine-tuning on MNLI is shown below:
+**Fine-Tuning**: After preprocessing the GLUE data, you can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE task. An example for using the script for fine-tuning on MNLI is shown below:
 ```
 ARCH=cocolm_base
 TASK=MNLI
@@ -46,7 +46,7 @@ bash run_glue.sh $TASK $PRETRAINED_MODEL_PATH $GLUE_DATA_DIR $OUT_PATH $ARCH $EP
 ```
 **Note: The `WARMUP` argument is the reciprocal of the warmup ratio (e.g., `WARMUP=16` means that we are using a 6.25% warmup ratio)**
 
-The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
+**Optimal Hyperparameters**: The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
 
 * COCO-LM base++
 
@@ -71,14 +71,14 @@ The fine-tuning hyperparameters leading to the best dev set performance in our e
 ## SQuAD 2.0 Fine-tuning 
 [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable. 
 
-Since Fairseq training takes binary input files, you need to first preprocess the SQuAD data to generate pickle files by running the following (SQuAD raw data will be automatically downloaded):
+**Download & Process SQuAD Data**: Since Fairseq training takes binary input files, you need to first preprocess the SQuAD data to generate pickle files by running the following (SQuAD raw data will be automatically downloaded):
 ```
 cd preprocess/squad
 bash process.sh <squad_data_folder> <dict_dir>
 ```
 where `<squad_data_folder>` is the path where raw and processed SQuAD data will be stored to; `<dict_dir>` is the directory containing two dictionary files `sp.model` and `dict.txt` which can be downloaded [here](https://github.com/microsoft/COCO-LM/releases/download/v0.1.0/dict.tar.gz).
 
-After preprocessing the SQuAD data, you can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2.0. An example for using the script is shown below:
+**Fine-Tuning**: After preprocessing the SQuAD data, you can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2.0. An example for using the script is shown below:
 ```
 ARCH=cocolm_base
 PRETRAINED_MODEL_PATH=/path/to/cocolm_base/model.pt
@@ -95,7 +95,7 @@ bash run_squad.sh $PRETRAINED_MODEL_PATH $DATA_DIR $OUT_PATH $ARCH $EPOCH $WARMU
 ```
 **Note: The `WARMUP` argument is the reciprocal of the warmup ratio (e.g., `WARMUP=16` means that we are using a 6.25% warmup ratio)**
 
-The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
+**Optimal Hyperparameters**: The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
 
 * COCO-LM base++
 
