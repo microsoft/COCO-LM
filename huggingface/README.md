@@ -20,9 +20,9 @@ We release two COCO-LM pretrained models, [`cocolm-base`](https://huggingface.co
 
 The [General Language Understanding Evaluation (GLUE)](https://gluebenchmark.com/) benchmark is a collection of sentence- or sentence-pair language understanding tasks for evaluating and analyzing natural language understanding systems. 
 
-You can download the [GLUE data](https://gluebenchmark.com/tasks) by running [this script](https://gist.github.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e) and unpack it to some directory.
+**Download GLUE Data**: You can download the [GLUE data](https://gluebenchmark.com/tasks) by running [this script](https://gist.github.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e) and unpack it to some directory.
 
-You can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE task. An example for using the script for fine-tuning on MNLI is shown below:
+**Fine-Tuning**: You can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE task. An example for using the script for fine-tuning on MNLI is shown below:
 ```
 MODEL=cocolm-base
 TASK=MNLI
@@ -38,7 +38,7 @@ export CUDA_VISIBLE_DEVICES=0
 bash run_glue.sh $MODEL $TASK $GLUE_DATASET_PATH $OUT_PATH $BSZ $LR $EPOCH $WARMUP $SEED
 ```
 
-The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
+**Optimal Hyperparameters**: The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
 
 * COCO-LM base++
 
@@ -65,7 +65,7 @@ The fine-tuning hyperparameters leading to the best dev set performance in our e
 
 The SQuAD 2.0 dataset will be automatically downloaded upon running the training script.
 
-You can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2.0. An example for using the script is shown below:
+**Fine-Tuning**: You can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2.0. An example for using the script is shown below:
 ```
 MODEL=cocolm-base
 SQUAD_DATASET_PATH=/path/to/squad2_data/
@@ -80,7 +80,7 @@ export CUDA_VISIBLE_DEVICES=0
 bash run_squad.sh $MODEL $SQUAD_DATASET_PATH $OUT_PATH $BSZ $LR $EPOCH $WARMUP $SEED
 ```
 
-The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
+**Optimal Hyperparameters**: The fine-tuning hyperparameters leading to the best dev set performance in our experiments are shown below (please note that the results and optimal hyperparameters might slightly differ in your runs due to different computation environments):
 
 * COCO-LM base++
 
