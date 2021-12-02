@@ -28,9 +28,9 @@ MODEL=cocolm-base
 TASK=MNLI
 GLUE_DATASET_PATH=/path/to/downloaded/glue_data
 OUT_PATH=./glue_finetune/cocolm_base
-BSZ=16
+BSZ=32
 LR=1e-5
-EPOCH=5
+EPOCH=2
 WARMUP=0.0625
 SEED=1
 
@@ -72,7 +72,7 @@ SQUAD_DATASET_PATH=/path/to/squad2_data/
 OUT_PATH=./squad2_finetune/cocolm_base
 BSZ=32
 LR=3e-5
-EPOCH=5
+EPOCH=3
 WARMUP=0.0625
 SEED=1
 
