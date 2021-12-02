@@ -21,7 +21,7 @@ The [General Language Understanding Evaluation (GLUE)](https://gluebenchmark.com
 
 You can download the [GLUE data](https://gluebenchmark.com/tasks) by running [this script](https://gist.github.com/W4ngatang/60c2bdb54d156a41194446737ce03e2e) and unpack it to some directory.
 
-Since Fairseq training takes binary input files, you need to first preprocess the GLUE data to generate binary files by running the following (make sure you have the `pv` (Pipe Viewer) tool installed):
+Since Fairseq training takes binary input files, you need to first preprocess the GLUE data to generate binary files by running the following:
 ```
 cd preprocess/glue
 bash process.sh <glue_data_folder> <task_name> <dict_dir> <output>
