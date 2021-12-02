@@ -23,6 +23,13 @@ GLUE dev set results of COCO-LM base++ and large++ models are as follows (median
 | COCO-LM base++ | 90.2/90.0 | 92.2 | 94.2 | 94.6 | 67.3 | 87.4 | 91.2 | 91.8 | 88.6 |
 | COCO-LM large++ | 91.4/91.6 | 92.8 | 95.7 | 96.9 | 73.9 | 91.0 | 92.2 | 92.7 | 90.8 |
 
+GLUE test set results of COCO-LM base++ and large++ models are as follows (no ensemble, task-specific tricks, etc.):
+
+| Model | MNLI-m/mm | QQP | QNLI | SST-2 | CoLA | RTE | MRPC | STS-B | AVG |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| COCO-LM base++ | 89.8/89.3 | 89.8 | 94.2 | 95.6 | 68.6 | 82.3 | 88.5 | 90.3 | 87.4 |
+| COCO-LM large++ | 91.6/91.1 | 90.5 | 95.8 | 96.7 | 70.5 | 89.2 | 88.4 | 91.8 | 89.3 |
+
 ## SQuAD 2.0 Fine-Tuning Results
 
 [Stanford Question Answering Dataset (SQuAD)](https://rajpurkar.github.io/SQuAD-explorer/) is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or span, from the corresponding reading passage, or the question might be unanswerable. 
@@ -40,7 +47,7 @@ If you find the code and models useful for your research, please cite the follow
 @inproceedings{meng2021cocolm,
   title={{COCO-LM}: Correcting and contrasting text sequences for language model pretraining},
   author={Meng, Yu and Xiong, Chenyan and Bajaj, Payal and Tiwary, Saurabh and Bennett, Paul and Han, Jiawei and Song, Xia},
-  booktitle={NeurIPS},
+  booktitle={Conference on Neural Information Processing Systems},
   year={2021}
 }
 ```
