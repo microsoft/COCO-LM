@@ -27,7 +27,7 @@ You can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE
 MODEL=cocolm-base
 TASK=MNLI
 GLUE_DATASET_PATH=/path/to/downloaded/glue_data
-OUT_PATH=./glue_finetune
+OUT_PATH=./glue_finetune/cocolm_base
 BSZ=16
 LR=1e-5
 EPOCH=5
@@ -69,7 +69,7 @@ You can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2
 ```
 MODEL=cocolm-base
 SQUAD_DATASET_PATH=/path/to/squad2_data/
-OUT_PATH=./squad_finetune
+OUT_PATH=./squad2_finetune/cocolm_base
 BSZ=32
 LR=3e-5
 EPOCH=5
