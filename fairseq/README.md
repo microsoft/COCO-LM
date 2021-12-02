@@ -26,7 +26,7 @@ Since Fairseq training takes binary input files, you need to first preprocess th
 cd preprocess/glue
 bash process.sh <glue_data_folder> <task_name> <dict_dir> <output>
 ```
-where `<glue_data_folder>` is the path of the raw GLUE data; `<task_name>` is one of the following: `{ALL, QQP, MNLI, QNLI, MRPC, RTE, STS-B, SST-2, CoLA}`; use `ALL` for preprocessing all the GLUE tasks; `<dict_dir>` is the directory containing two dictionary files `sp.model` and `dict.txt` which can be downloaded [here](); `<task_name>` is the output directory for processed GLUE data.
+where `<glue_data_folder>` is the path of the raw GLUE data; `<task_name>` is one of the following: `{ALL, QQP, MNLI, QNLI, MRPC, RTE, STS-B, SST-2, CoLA}`; use `ALL` for preprocessing all the GLUE tasks; `<dict_dir>` is the directory containing two dictionary files `sp.model` and `dict.txt` which can be downloaded [here](https://github.com/microsoft/COCO-LM/releases/download/v0.1.0/dict.tar.gz); `<task_name>` is the output directory for processed GLUE data.
 
 After preprocessing the GLUE data, you can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE task. An example for using the script for fine-tuning on MNLI is shown below:
 ```
