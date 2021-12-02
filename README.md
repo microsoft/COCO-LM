@@ -4,6 +4,8 @@ This repository contains the scripts for fine-tuning COCO-LM pretrained models o
 
 Paper: [COCO-LM: Correcting and Contrasting Text Sequences for Language Model Pretraining](https://arxiv.org/abs/2102.08473)
 
+<img src="./coco-lm.png" width="1000px"></img>
+
 ## Overview
 
 We provide the scripts in two versions, based on two widely-used open-source codebases, the [Fairseq Library](https://github.com/pytorch/fairseq) and the [Huggingface Transformers Library](https://github.com/huggingface/transformers). The two code versions are mostly equivalent in functionality, and you are free to use either of them. However, we note that the [fairseq](fairseq) version is what we used in our experiments, and it will best reproduce the results in the paper; the [huggingface](huggingface) version is implemented later to provide compatibility with the Huggingface Transformers Library, and may yield slightly different results.
