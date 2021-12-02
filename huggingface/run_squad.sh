@@ -56,6 +56,8 @@ python run_squad.py \
     --weight_decay 0.01 --warmup_ratio $WM  \
     --adam_epsilon 1e-6 --adam_betas "0.9,0.98" \
     --seed $SEED \
-    --overwrite_output_dir --do_not_save \
-    --metric_for_choose_best_checkpoint "best_f1" \
-    --fp16_init_loss_scale 128.0 --fp16 --fp16_opt_level O2 |& tee $OUTPUT_PATH/train.log
+    --overwrite_output_dir \
+    --metric_for_choose_best_checkpoint "best_f1" |& tee $OUTPUT_PATH/train.log
+
+# Add the following for fp16 training    
+# --fp16_init_loss_scale 128.0 --fp16 --fp16_opt_level O2

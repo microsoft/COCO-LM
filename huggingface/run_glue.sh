@@ -47,5 +47,7 @@ python run_glue.py \
     --adam_epsilon 1e-6 --adam_betas "0.9,0.98" \
     --dropout_prob 0.1 --cls_dropout_prob 0.1 \
     --seed $SEED \
-    --overwrite_output_dir --do_not_save \
-    --fp16_init_loss_scale 128.0 --fp16 --fp16_opt_level O2 |& tee $OUTPUT_PATH/train.log
+    --overwrite_output_dir |& tee $OUTPUT_PATH/train.log
+
+# Add the following for fp16 training
+# --fp16_init_loss_scale 128.0 --fp16 --fp16_opt_level O2 
