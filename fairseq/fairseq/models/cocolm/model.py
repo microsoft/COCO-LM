@@ -436,7 +436,7 @@ class COCOLM_ClassificationHead(nn.Module):
 
 
 class Generator(FairseqEncoder):
-    """MC auxiliary.
+    """COCO-LM auxiliary encoder.
 
     Implements the :class:`~fairseq.models.FairseqEncoder` interface required
     by :class:`~fairseq.models.FairseqLanguageModel`.
@@ -521,7 +521,7 @@ class Generator(FairseqEncoder):
 
 
 class GenEncoder(FairseqEncoder):
-    """COCO-LM auxiliary encoder.
+    """COCO-LM main encoder.
 
     Implements the :class:`~fairseq.models.FairseqEncoder` interface required
     by :class:`~fairseq.models.FairseqLanguageModel`.
