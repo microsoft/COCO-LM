@@ -16,7 +16,7 @@ import torch.nn.functional as F
 from torch.nn import Parameter
 
 from transformers.modeling_utils import PreTrainedModel, PoolerAnswerClass, PoolerEndLogits, PoolerStartLogits
-from transformers.modeling_bert import ACT2FN
+from transformers.models.bert.modeling_bert import ACT2FN
 from transformers.file_utils import WEIGHTS_NAME
 from transformers.activations import get_activation
 
@@ -33,8 +33,8 @@ except ImportError:
 
 
 COCOLM_PRETRAINED_MODEL_ARCHIVE_MAP = {
-    'cocolm-base': "https://huggingface.co/microsoft/cocolm-base/resolve/main/pytorch_model.bin",
-    'cocolm-large': "https://huggingface.co/microsoft/cocolm-large/resolve/main/pytorch_model.bin",
+    'microsoft/cocolm-base': "https://huggingface.co/microsoft/cocolm-base/resolve/main/pytorch_model.bin",
+    'microsoft/cocolm-large': "https://huggingface.co/microsoft/cocolm-large/resolve/main/pytorch_model.bin",
 }
 
 class COCOLMPreTrainedModel(PreTrainedModel):
@@ -157,7 +157,10 @@ class COCOLMPreTrainedModel(PreTrainedModel):
 
             kwargs["state_dict"] = not_drop_state_dict
             del state_dict
-        pretrained_model_name_or_path = pretrained_model_archive_map[pretrained_model_name_or_path]
+        if pretrained_model_name_or_path in pretrained_model_archive_map:
+            pretrained_model_name_or_path = pretrained_model_archive_map[pretrained_model_name_or_path]
+        else:
+            pretrained_model_name_or_path = 'microsoft/cocolm-large'  
         return super().from_pretrained(pretrained_model_name_or_path, *model_args, **kwargs)
 
 
@@ -534,9 +537,8 @@ class COCOLMCLMHead(nn.Module):
         self.decoder.bias = self.bias
 
     def forward(self, hidden_states):
-        hidden_states = F.linear(
-            hidden_states, weight=self.weight, bias=self.bias)
-        return hidden_states
+        x = self.decoder(hidden_states)
+        return x
 
 
 class COCOLMSCLHead(nn.Module):
@@ -583,8 +585,7 @@ class COCOLMModel(COCOLMPreTrainedModel):
 
         self.embeddings = COCOLMEmbeddings(config)
         self.encoder = COCOLMEncoder(config)
-        # self.binary_head = COCOLMBinaryPredictions(config)
-        # self.clm_head = COCOLMCLMHead(config)
+        
         if hasattr(config, 'need_pooler') and getattr(config, 'need_pooler'):
             self.scl_head = COCOLMSCLHead(config)
         else:

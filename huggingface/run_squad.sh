@@ -46,7 +46,7 @@ touch $OUTPUT_PATH/train.log
 
 python run_squad.py \
     --model_type cocolm --model_name_or_path $MODEL_NAME \
-    --config_name $MODEL_NAME --tokenizer_name_or_path cocolm-cased \
+    --config_name $MODEL_NAME \
     --train_file $TRAIN_FILE --predict_file $DEV_FILE \
     --cached_train_file $TRAIN_CACHE --cached_dev_file $DEV_CACHE \
     --do_train --evaluate_during_training --logging_steps 1000 \

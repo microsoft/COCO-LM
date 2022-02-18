@@ -12,7 +12,8 @@ import collections
 from io import open
 from tqdm import tqdm
 
-from transformers.tokenization_bert import BasicTokenizer, whitespace_tokenize
+from transformers.models.bert import BasicTokenizer
+from transformers.models.bert.tokenization_bert import whitespace_tokenize
 
 # Required by XLNet evaluation method to compute optimal threshold (see write_predictions_extended() method)
 from utils_squad_evaluate import find_all_best_thresh_v2, make_qid_to_has_ans, get_raw_scores

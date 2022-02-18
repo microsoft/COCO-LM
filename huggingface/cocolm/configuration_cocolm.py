@@ -14,8 +14,8 @@ from transformers.configuration_utils import PretrainedConfig
 logger = logging.getLogger(__name__)
 
 COCOLM_PRETRAINED_CONFIG_ARCHIVE_MAP = {
-    'cocolm-base': "https://huggingface.co/microsoft/cocolm-base/resolve/main/config.json",
-    'cocolm-large': "https://huggingface.co/microsoft/cocolm-large/resolve/main/config.json",
+    'microsoft/cocolm-base': "https://huggingface.co/microsoft/cocolm-base/resolve/main/config.json",
+    'microsoft/cocolm-large': "https://huggingface.co/microsoft/cocolm-large/resolve/main/config.json",
 }
 
 class COCOLMConfig(PretrainedConfig):
@@ -81,5 +81,4 @@ class COCOLMConfig(PretrainedConfig):
     
     @classmethod
     def from_pretrained(cls, pretrained_model_name_or_path, **kwargs):
-        config_path = cls.pretrained_config_archive_map[pretrained_model_name_or_path]
-        return super().from_pretrained(config_path, **kwargs)
+        return super().from_pretrained(pretrained_model_name_or_path, **kwargs)

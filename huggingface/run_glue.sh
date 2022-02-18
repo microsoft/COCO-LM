@@ -40,7 +40,7 @@ touch $OUTPUT_PATH/train.log
 python run_glue.py \
     --model_type cocolm --model_name_or_path $MODEL_NAME --task_name $TASK_NAME \
     --data_dir $DATASET_PATH --cached_train_file $TRAIN_CACHE --cached_dev_file $DEV_CACHE \
-    --config_name $MODEL_NAME --tokenizer_name_or_path cocolm-cased \
+    --config_name $MODEL_NAME \
     --do_train --evaluate_during_training --logging_steps 1000 --output_dir $OUTPUT_PATH --max_grad_norm 0 --gradient_accumulation_steps 1 \
     --max_seq_length $MAX_LEN --per_gpu_train_batch_size $BSZ --learning_rate $LR \
     --num_train_epochs $EPOCH --weight_decay 0.01 --warmup_ratio $WM \

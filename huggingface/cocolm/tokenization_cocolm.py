@@ -160,6 +160,7 @@ class COCOLMTokenizer(PreTrainedTokenizer):
             self.dictionary = Dictionary.load(dict_file)
         except ImportError:
             raise ImportError('Please install sentencepiece with: pip install sentencepiece')
+        self.dictionary.add_symbol('<mask>')
 
     @property
     def cls_token(self):
@@ -183,11 +184,15 @@ class COCOLMTokenizer(PreTrainedTokenizer):
 
     @property
     def sep_token_id(self):
-        return self.dictionary.sep_index
+        return self.dictionary.eos_index
 
     @property
     def pad_token_id(self):
         return self.dictionary.pad_index
+
+    @property
+    def mask_token_id(self):
+        return self.dictionary.index('<mask>')
 
     @property
     def unk_token_id(self):
@@ -210,13 +215,14 @@ class COCOLMTokenizer(PreTrainedTokenizer):
             tokens = tokens_a + tokens_b
 
         ids = self.convert_tokens_to_ids(tokens)
-
         return {"input_ids": ids}
 
-    def encode(self, x: str) -> str:
-        return ' '.self.tokenize(x)
+    def encode(self, x: str, add_special_tokens=False) -> str:
+        tokens = self.tokenize(x)
+        return self.convert_tokens_to_ids(tokens)
 
-    def decode(self, x: str) -> str:
+    def decode(self, ids: list) -> str:
+        x = "".join([self._convert_id_to_token(token_id) for token_id in ids])
         return x.replace(' ', '').replace('\u2581', ' ').strip()
 
     def skip_space(self, tokens):
@@ -239,12 +245,20 @@ class COCOLMTokenizer(PreTrainedTokenizer):
 
     def convert_tokens_to_ids(self, tokens: list):
         ret = []
+        if isinstance(tokens, str):
+            return self.dictionary.index(tokens)
         for token in tokens:
             ret.append(self.dictionary.index(token))
         return ret
+    
+    def _convert_id_to_token(self, index):
+        """ Converts a token (str) in an id using the vocab. """
+        token = self.dictionary[index]
+        return token
 
     def convert_tokens_to_string(self, tokens: list):
-        return self.decode(" ".join(tokens))
+        x = " ".join(tokens)
+        return x.replace(' ', '').replace('\u2581', ' ').strip()
 
     def is_beginning_of_word(self, x: str) -> bool:
         if x in ["<unk>", "<s>", "</s>", "<pad>", "[CLS]", "[PAD]", "[SEP]", "[UNK]"]:
@@ -255,4 +269,3 @@ class COCOLMTokenizer(PreTrainedTokenizer):
             # sure that they are all taken into account.
             return True
         return x.startswith("\u2581")
-

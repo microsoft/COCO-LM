@@ -24,7 +24,7 @@ The [General Language Understanding Evaluation (GLUE)](https://gluebenchmark.com
 
 **Fine-Tuning**: You can run the [`run_glue.sh`](run_glue.sh) script for fine-tuning on each GLUE task. An example for using the script for fine-tuning on MNLI is shown below:
 ```
-MODEL=cocolm-base
+MODEL=microsoft/cocolm-base
 TASK=MNLI
 GLUE_DATASET_PATH=/path/to/downloaded/glue_data
 OUT_PATH=./glue_finetune/cocolm_base
@@ -67,7 +67,7 @@ The SQuAD 2.0 dataset will be automatically downloaded upon running the training
 
 **Fine-Tuning**: You can run the [`run_squad.sh`](run_squad.sh) script for fine-tuning on SQuAD 2.0. An example for using the script is shown below:
 ```
-MODEL=cocolm-base
+MODEL=microsoft/cocolm-base
 SQUAD_DATASET_PATH=/path/to/squad2_data/
 OUT_PATH=./squad2_finetune/cocolm_base
 BSZ=32
