@@ -16,6 +16,23 @@ In addition, if you would like to utilize `fp16` training, you need to install [
 
 We release two COCO-LM pretrained models, [`cocolm-base`](https://huggingface.co/microsoft/cocolm-base) and [`cocolm-large`](https://huggingface.co/microsoft/cocolm-large), which correspond to the `base++` and `large++` models mentioned in the paper, respectively. You do not need to download them manually as they will be automatically downloaded upon running the training scripts.
 
+## Usage
+ ```python
+>>> import torch
+>>> from cocolm.modeling_cocolm import COCOLMModel
+>>> from cocolm.configuration_cocolm import COCOLMConfig
+>>> from cocolm.tokenization_cocolm import COCOLMTokenizer
+
+>>> config = COCOLMConfig.from_pretrained("microsoft/cocolm-base")
+
+>>> model = COCOLMModel.from_pretrained("microsoft/cocolm-base", config=config)
+>>> tokenizer = COCOLMTokenizer.from_pretrained("microsoft/cocolm-base")
+
+>>> inputs = tokenizer.encode("Hello world!")
+>>> outputs = model(torch.tensor([inputs]))
+
+ ```
+
 ## GLUE Fine-tuning
 
 The [General Language Understanding Evaluation (GLUE)](https://gluebenchmark.com/) benchmark is a collection of sentence- or sentence-pair language understanding tasks for evaluating and analyzing natural language understanding systems. 
