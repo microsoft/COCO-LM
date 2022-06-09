@@ -159,7 +159,7 @@ class COCOLMPreTrainedModel(PreTrainedModel):
             del state_dict
         if pretrained_model_name_or_path in pretrained_model_archive_map:
             pretrained_model_name_or_path = pretrained_model_archive_map[pretrained_model_name_or_path]
-        else:
+        elif not os.path.isfile(pretrained_model_name_or_path):
             pretrained_model_name_or_path = 'microsoft/cocolm-large'  
         return super().from_pretrained(pretrained_model_name_or_path, *model_args, **kwargs)
 
